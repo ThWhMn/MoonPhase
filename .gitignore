@@ -1,0 +1,7 @@
+refer/
+
+**/obj
+**/.vs
+.vscode/settings.json
+
+**/*.user

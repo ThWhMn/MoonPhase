@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+    <MoonPhase>月相</MoonPhase>
+
+    <NewMoon>新月</NewMoon>
+    <WaxingCrescent>眉月</WaxingCrescent>
+    <FirstQuarter>上弦月</FirstQuarter>
+    <WaxingGibbous>上凸月</WaxingGibbous>
+    <FullMoon>满月</FullMoon>
+    <WaningGibbous>下凸月</WaningGibbous>
+    <LastQuarter>下弦月</LastQuarter>
+    <WaningCrescent>残月</WaningCrescent>
+
+    <MP.ShowTips.Label>展示Tip</MP.ShowTips.Label>
+
+    <NewMoon_Tip>Fly me to the moon</NewMoon_Tip>
+    <WaxingCrescent_Tip>And let me play among the stars</WaxingCrescent_Tip>
+    <FirstQuarter_Tip>Let me see what spring is like</FirstQuarter_Tip>
+    <WaxingGibbous_Tip>On Jupiter and Mars</WaxingGibbous_Tip>
+    <FullMoon_Tip>In other words</FullMoon_Tip>
+    <WaningGibbous_Tip>Hold my hand</WaningGibbous_Tip>
+    <LastQuarter_Tip>In other words</LastQuarter_Tip>
+    <WaningCrescent_Tip>Darling, kiss me</WaningCrescent_Tip>
+</LanguageData>

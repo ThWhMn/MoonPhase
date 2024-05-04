@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+    <packageId>Thwh.MoonPhase</packageId>
+
+    <name>MoonPhase</name>
+
+    <author>Thwh</author>
+
+    <supportedVersions>
+        <li>1.5</li>
+    </supportedVersions>
+
+    <!-- <modDependencies>
+    </modDependencies> -->
+
+    <description>为游戏添加了月相机制以及几个相关的HediffGiver
+
+
+        添加GUI的代码学习自<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2882369457">Food Alert</a>
+        Preview.png from <a href="https://www.freepik.com/free-vector/cute-smoon-doodle-illustration-sticker_16339051.htm#fromView=search&amp;page=1&amp;position=1&amp;uuid=50e3dd47-7d9a-4007-a7b2-87e19231dbb8">Image by rawpixel.com</a> on Freepik
+    </description>
+
+</ModMetaData>
