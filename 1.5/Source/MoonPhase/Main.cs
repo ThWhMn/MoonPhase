@@ -35,10 +35,6 @@ internal class Main
     static readonly int NumOfPhase = (int)PhaseNames.End;
     static Main()
     {
-        if (MpSettingsWin.setting.initPhase == PhaseNames.Start)
-        {
-            MpSettingsWin.setting.initPhase = (PhaseNames)Rand.Range((int)PhaseNames.Start + 1, (int)PhaseNames.End);
-        }
         if (!Harmony.HasAnyPatches(harmonyId))
         {
             Harmony harmony = new(harmonyId);
@@ -67,7 +63,7 @@ internal class Main
     {
         int days = GenDate.DaysPassed;
         int offset = days % NumOfPhase;
-        return offset + MpSettingsWin.setting.initPhase;
+        return offset + PhaseNames.Start + 1;
     }
 
     private static void UpdateTab(ref float curBaseY)
