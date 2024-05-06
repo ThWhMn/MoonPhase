@@ -1,5 +1,5 @@
 ﻿using HarmonyLib;
-using MoonPhase.Setting;
+using MoonPhase.Settings;
 using RimWorld;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +9,10 @@ using Verse;
 namespace MoonPhase;
 
 
+/// <summary>
+/// 因为一quadrum有15天，为了保持15天正好一个轮回
+/// 需要第1天和第16天月相一致，但这做不到，干脆直接新增一个阴历纪年法。
+/// </summary>
 public enum PhaseNames
 {
     Start = -1,
@@ -26,17 +30,26 @@ public enum PhaseNames
 [StaticConstructorOnStartup]
 internal class Main
 {
-    static Dictionary<PhaseNames, string> phase2str = new Dictionary<PhaseNames, string>();
+    static readonly string harmonyId = "Thwh.MoonPhase";
+    static readonly Dictionary<PhaseNames, string> phase2str = new();
+    static readonly int NumOfPhase = (int)PhaseNames.End;
     static Main()
     {
-        Harmony harmony = new("Thwh.MoonPhase");
-        harmony.Patch(
-            original: AccessTools.Method(typeof(GlobalControlsUtility), nameof(GlobalControlsUtility.DoDate)),
-            prefix: null,
-            postfix: new HarmonyMethod(typeof(Main), nameof(ShouldUpdate)));
-        for (var i = PhaseNames.Start + 1; i < PhaseNames.End; i++)
+        if (MpSettingsWin.setting.initPhase == PhaseNames.Start)
         {
-            phase2str.Add(i, $"{i}");
+            MpSettingsWin.setting.initPhase = (PhaseNames)Rand.Range((int)PhaseNames.Start + 1, (int)PhaseNames.End);
+        }
+        if (!Harmony.HasAnyPatches(harmonyId))
+        {
+            Harmony harmony = new(harmonyId);
+            harmony.Patch(
+                original: AccessTools.Method(typeof(GlobalControlsUtility), nameof(GlobalControlsUtility.DoDate)),
+                prefix: null,
+                postfix: new HarmonyMethod(typeof(Main), nameof(ShouldUpdate)));
+            for (var i = PhaseNames.Start + 1; i < PhaseNames.End; i++)
+            {
+                phase2str[i] = $"{i}";
+            }
         }
     }
 
@@ -45,32 +58,16 @@ internal class Main
         UpdateTab(ref curBaseY);
     }
 
-    public static bool InPhaseList(Pawn pawn, List<string> list)
+    public static bool InPhaseList(List<string> list)
     {
-        return list.Contains(phase2str[GetPhase(pawn)]);
+        return list.Contains(phase2str[DayspassedtoPhase()]);
     }
 
-    public static PhaseNames GetPhase(Pawn pawn)
+    private static PhaseNames DayspassedtoPhase()
     {
-        return TranstoPhase(GenLocalDate.DayOfQuadrum(pawn));
-    }
-
-    private static PhaseNames TranstoPhase(int dayOfQuadrum)
-    {
-        if (dayOfQuadrum <= (int)PhaseNames.Start)
-        {
-            Log.Error($"Wrong dayOfQuadrum {dayOfQuadrum} when trans to PhaseName");
-            return PhaseNames.NewMoon;
-        }
-        else if (dayOfQuadrum < (int)PhaseNames.End)
-        {
-            return (PhaseNames)dayOfQuadrum;
-        }
-        else
-        {
-            var offset = dayOfQuadrum % (int)PhaseNames.End;
-            return (PhaseNames)offset;
-        }
+        int days = GenDate.DaysPassed;
+        int offset = days % NumOfPhase;
+        return offset + MpSettingsWin.setting.initPhase;
     }
 
     private static void UpdateTab(ref float curBaseY)
@@ -85,7 +82,7 @@ internal class Main
             Widgets.DrawHighlight(zlRect);
         }
 
-        var phaseType = TranstoPhase(GenLocalDate.DayOfQuadrum(Find.CurrentMap));
+        var phaseType = DayspassedtoPhase();
 
         // 在此处创建GUI
         GUI.BeginGroup(zlRect);
@@ -104,7 +101,7 @@ internal class Main
         // GUI创建结束
         GUI.EndGroup();
 
-        if (MpSetting.config.showTips)
+        if (MpSettingsWin.setting.showTips)
         {
             TooltipHandler.TipRegion(zlRect, new TipSignal($"{phaseType}_Tip".Translate()));
         }

@@ -4,9 +4,9 @@ using Verse;
 
 namespace MoonPhase.HediffGiverExt;
 
-public class HediffGiver_PeriodAtPhase : HediffGiver
+public class HediffGiver_PeriodAtDay : HediffGiver
 {
-    private List<string> phases;
+    private List<int> days;
     private int startTimeHour;
     private int endTimeHour { get => startTimeHour + periodHour; }
     private int periodHour;
@@ -16,7 +16,7 @@ public class HediffGiver_PeriodAtPhase : HediffGiver
 
     private bool DuringPeriod(Pawn pawn)
     {
-        if (!Main.InPhaseList(phases))
+        if (!days.Contains(GenLocalDate.DayOfQuadrum(pawn)))
             return false;
         var now = GenLocalDate.HourInteger(pawn);
         return startTimeHour <= now && now < endTimeHour;

@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using Verse;
 
-namespace MoonPhase.Setting;
+namespace MoonPhase.Settings;
 
-internal class MpSetting : Mod
+internal class MpSettingsWin : Mod
 {
-    public static MpConfig config;
-    public MpSetting(ModContentPack content) : base(content)
+    public static MpSettings setting;
+    public MpSettingsWin(ModContentPack content) : base(content)
     {
-        config = GetSettings<MpConfig>();
+        setting = GetSettings<MpSettings>();
     }
 
     public override string SettingsCategory()
@@ -21,9 +21,9 @@ internal class MpSetting : Mod
         var listingStandard = new Listing_Standard();
         listingStandard.Begin(inRect);
 
-        listingStandard.CheckboxLabeled("MP.ShowTips.Label".Translate(), ref config.showTips);
+        listingStandard.CheckboxLabeled("MP.ShowTips.Label".Translate(), ref setting.showTips);
 
         listingStandard.End();
-        config.Write();
+        setting.Write();
     }
 }

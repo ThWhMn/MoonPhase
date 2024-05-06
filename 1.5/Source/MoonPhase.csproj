@@ -64,12 +64,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Setting\MpConfig.cs" />
+    <Compile Include="HediffGiverExt\HediffGiver_PeriodAtDay.cs" />
+    <Compile Include="Settings\MpSettings.cs" />
     <Compile Include="HediffGiverExt\HediffGiver_PeriodAtPhase.cs" />
     <Compile Include="HediffGiverExt\HediffGiver_Period.cs" />
     <Compile Include="MoonPhase\Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Setting\MpSetting.cs" />
+    <Compile Include="Settings\MpSettingsWin.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
