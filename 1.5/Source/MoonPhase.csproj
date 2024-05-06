@@ -11,7 +11,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MoonPhase</RootNamespace>
-    <AssemblyName>MoonPhase</AssemblyName>
+    <AssemblyName>MoonPhase_Wolfein</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -65,12 +65,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HediffGiverExt\HediffGiver_PeriodAtDay.cs" />
-    <Compile Include="Settings\MpSettings.cs" />
-    <Compile Include="HediffGiverExt\HediffGiver_PeriodAtPhase.cs" />
     <Compile Include="HediffGiverExt\HediffGiver_Period.cs" />
-    <Compile Include="MoonPhase\Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings\MpSettingsWin.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />

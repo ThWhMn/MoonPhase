@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Verse;
 
-namespace MoonPhase.HediffGiverExt;
+namespace MoonPhase.Wolfein.HediffGiverExt;
 
 public class HediffGiver_PeriodAtDay : HediffGiver
 {
