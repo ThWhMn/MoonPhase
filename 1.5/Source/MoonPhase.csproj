@@ -64,7 +64,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HediffGiverExt\HediffGiver_BasePeriod.cs" />
     <Compile Include="HediffGiverExt\HediffGiver_PeriodAtDay.cs" />
+    <Compile Include="HediffGiverExt\Utils.cs" />
     <Compile Include="HediffGiverExt\HediffGiver_Period.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
